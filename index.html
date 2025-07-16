@@ -43,7 +43,30 @@
       text-decoration: none;
       color: inherit;
     }
-    nav {
+    /* ハンバーガーアイコン */
+    .hamburger {
+      display: none;
+      width: 40px; height: 40px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 120;
+      position: fixed; left: 14px; top: 12px;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .hamburger span {
+      display: block;
+      width: 28px; height: 4px;
+      background: #8436e6;
+      margin: 4px 0;
+      border-radius: 2px;
+      transition: .2s;
+    }
+
+    nav.menu-nav {
       width: 100vw;
       background: var(--color-white);
       box-shadow: 0 2px 8px rgba(0,0,0,0.01);
@@ -56,8 +79,9 @@
       left: 0;
       z-index: 100;
       min-height: 54px;
+      transition: left .25s;
     }
-    nav ul {
+    nav.menu-nav ul {
       margin: 0;
       padding: 0;
       display: flex;
@@ -67,18 +91,57 @@
       letter-spacing: 2px;
       flex-wrap: wrap;
     }
-    nav li {
+    nav.menu-nav li {
       margin: 0 1.8vw;
       white-space: nowrap;
     }
-    nav a {
+    nav.menu-nav a {
       color: var(--text-main);
       text-decoration: none;
       padding: 12px 0;
       transition: color .25s;
     }
-    nav a:hover {
+    nav.menu-nav a:hover {
       color: var(--text-accent);
+    }
+
+    /* モバイル時：ハンバーガー&ドロワー */
+    @media (max-width: 700px) {
+      .hamburger { display: flex; }
+      nav.menu-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        left: -80vw;
+        width: 70vw;
+        max-width: 320px;
+        height: 100vh;
+        background: #fff;
+        box-shadow: 4px 0 16px rgba(60,60,100,0.11);
+        padding-top: 60px;
+      }
+      nav.menu-nav.open { left: 0; }
+      nav.menu-nav ul {
+        flex-direction: column;
+        gap: 18px;
+        margin-top: 18px;
+        padding-left: 24px;
+      }
+      nav.menu-nav li a {
+        color: #8436e6;
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+      body.menu-open main, body.menu-open .card { margin-left: 60vw; }
+    }
+    /* PC時は今まで通り */
+    @media (min-width: 701px) {
+      .hamburger { display: none; }
+      nav.menu-nav { 
+        position: fixed; left: 0; width: 100vw; height: auto; background: var(--color-white); box-shadow: 0 2px 8px rgba(0,0,0,0.01); padding: 0;
+      }
+      nav.menu-nav ul { flex-direction: row; gap: 2vw; padding: 0; }
+      nav.menu-nav li a { color: #222; font-size: 1.1rem; }
+      main, .card { margin-left: 0 !important; }
     }
     main {
       flex: 1;
@@ -212,7 +275,13 @@
   </style>
 </head>
 <body>
-  <nav>
+  <!-- ハンバーガーアイコン -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+
+  <!-- メニュー -->
+  <nav class="menu-nav" id="menuNav">
     <ul>
       <li><a href="index.html">HOME</a></li>
       <li><a href="live.html">LIVE</a></li>
@@ -245,5 +314,24 @@
       </div>
     </section>
   </main>
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('menuNav');
+      nav.classList.toggle('open');
+      document.body.classList.toggle('menu-open');
+      // 背景クリックでメニューを閉じる
+      if (nav.classList.contains('open')) {
+        document.body.addEventListener('click', closeMenuByBody, { once: true });
+      }
+    }
+    function closeMenuByBody(e) {
+      const nav = document.getElementById('menuNav');
+      const hamburger = document.querySelector('.hamburger');
+      if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+        nav.classList.remove('open');
+        document.body.classList.remove('menu-open');
+      }
+    }
+  </script>
 </body>
 </html>
