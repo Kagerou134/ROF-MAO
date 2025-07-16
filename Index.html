@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ROF-MAO 非公式ファンページ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg1: #f5f6fa;
+      --main-bg2: #e7eaf4;
+      --main-bg3: #dee2ec;
+      --main-shadow: 0 4px 32px rgba(80, 80, 100, 0.08);
+      --color-violet: #8436e6;
+      --color-purple: #a259e6;
+      --color-kagami: #f5f6fa;
+      --color-kaida: #44bde9;
+      --color-kenmochi: #7a4be8;
+      --color-fuwa: #bb47bc;
+      --color-yellow: #fff9e5;
+      --color-blue: #e5f3ff;
+      --color-white: #fff;
+      --color-gray: #e9ecef;
+      --text-main: #222;
+      --text-accent: #8436e6;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Noto Sans JP', 'Segoe UI', 'Meiryo', sans-serif;
+      color: var(--text-main);
+      background: linear-gradient(120deg, var(--main-bg1) 0%, var(--main-bg2) 80%);
+      min-height: 100vh;
+    }
+    body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    nav {
+      width: 100vw;
+      background: var(--color-white);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.01);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      min-height: 54px;
+    }
+    nav ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      list-style: none;
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      flex-wrap: wrap;
+    }
+    nav li {
+      margin: 0 1.8vw;
+      white-space: nowrap;
+    }
+    nav a {
+      color: var(--text-main);
+      text-decoration: none;
+      padding: 12px 0;
+      transition: color .25s;
+    }
+    nav a:hover {
+      color: var(--text-accent);
+    }
+    main {
+      flex: 1;
+      margin-top: 74px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card {
+      background: var(--color-white);
+      box-shadow: var(--main-shadow);
+      border-radius: 24px;
+      padding: 40px 30px 32px 30px;
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 420px;
+      width: 98vw;
+    }
+    .main-visual {
+      width: 280px;
+      height: 140px;
+      background: var(--color-gray);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+    .main-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin: 26px 0 0 0;
+      letter-spacing: 2px;
+      font-weight: 900;
+      line-height: 1.1;
+      text-align: center;
+    }
+    .sub-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-accent);
+      margin: 0 0 6px 0;
+      text-align: center;
+    }
+    .desc {
+      margin: 18px 0 18px 0;
+      font-size: 1.13rem;
+      text-align: center;
+      color: #333;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+    .highlight {
+      color: #ffc700;
+      font-weight: bold;
+      background: rgba(255,243,173,0.7);
+      border-radius: 6px;
+      padding: 0 4px;
+    }
+    .button-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(3, 1fr);
+      gap: 18px 20px;
+      width: 100%;
+      margin-top: 18px;
+    }
+    .button-grid .btn {
+      font-size: 1.2rem;
+      padding: 14px 0;
+      border-radius: 14px;
+      font-weight: 700;
+      border: none;
+      outline: none;
+      transition: box-shadow 0.2s, background 0.2s, color 0.2s;
+      cursor: pointer;
+      width: 100%;
+      letter-spacing: 1px;
+      box-shadow: 0 1px 6px rgba(60,60,100,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .btn-live {
+      background: var(--color-yellow);
+      color: var(--text-main);
+    }
+    .btn-variety {
+      background: var(--color-blue);
+      color: #2673b7;
+    }
+    .btn-kenmochi {
+      background: var(--color-kenmochi);
+      color: var(--color-white);
+    }
+    .btn-fuwa {
+      background: var(--color-fuwa);
+      color: var(--color-white);
+    }
+    .btn-kagami {
+      background: var(--color-kagami);
+      color: #333;
+    }
+    .btn-kaida {
+      background: var(--color-kaida);
+      color: var(--color-white);
+    }
+    .btn-live:hover { filter: brightness(0.98);}
+    .btn-variety:hover { filter: brightness(0.98);}
+    .btn-kenmochi:hover { filter: brightness(1.08);}
+    .btn-fuwa:hover { filter: brightness(1.08);}
+    .btn-kagami:hover { filter: brightness(0.98);}
+    .btn-kaida:hover { filter: brightness(1.08);}
+    @media (max-width: 620px) {
+      nav ul { font-size: 1rem;}
+      nav li { margin: 0 0.9vw;}
+      .card { padding: 22px 6px; max-width: 98vw;}
+      h1 { font-size: 1.2rem;}
+      .desc { font-size: 0.98rem;}
+      .main-visual { width: 98vw; max-width: 320px;}
+      .button-grid { gap: 10px 8px;}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="Live.html">LIVE</a></li>
+      <li><a href="Variety.html">VARIETY</a></li>
+      <li><a href="members/kenmochi.html">剣持刀也</a></li>
+      <li><a href="members/fuwa.html">不破湊</a></li>
+      <li><a href="members/kagami.html">加賀美ハヤト</a></li>
+      <li><a href="members/kaida.html">甲斐田晴</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section class="card">
+      <div class="main-visual">
+        <img src="img/ROF-MAO.png" alt="ROF-MAO">
+      </div>
+      <h1>
+        ROF-MAO<br>非公式ファンページ
+      </h1>
+      <div class="desc">
+        にじさんじ所属の4人組バーチャルユニット<br>
+        <span class="highlight">「ROF-MAO」</span>を全力で推す！
+      </div>
+      <div class="button-grid">
+        <a href="Live.html" class="btn btn-live">🎤 ライブ一覧</a>
+        <a href="Variety.html" class="btn btn-variety">📺 バラエティ</a>
+        <a href="members/kenmochi.html" class="btn btn-kenmochi">剣持刀也</a>
+        <a href="members/fuwa.html" class="btn btn-fuwa">不破湊</a>
+        <a href="members/kagami.html" class="btn btn-kagami">加賀美ハヤト</a>
+        <a href="members/kaida.html" class="btn btn-kaida">甲斐田晴</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
