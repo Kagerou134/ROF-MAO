@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>剣持刀也 | ROF-MAO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
       --main-bg1: #f5f6fa;
@@ -26,6 +27,105 @@
       flex-direction: column;
       align-items: center;
       padding-bottom: 40px;
+    }
+    a { text-decoration: none; color: inherit; }
+    /* ハンバーガーアイコン */
+    .hamburger {
+      display: none;
+      width: 40px; height: 40px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 120;
+      position: fixed; left: 14px; top: 12px;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .hamburger span {
+      display: block;
+      width: 28px; height: 4px;
+      background: var(--accent-kenmochi);
+      margin: 4px 0;
+      border-radius: 2px;
+      transition: .2s;
+    }
+    nav.menu-nav {
+      width: 100vw;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.01);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      min-height: 54px;
+      transition: left .25s;
+    }
+    nav.menu-nav ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      list-style: none;
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      flex-wrap: wrap;
+    }
+    nav.menu-nav li {
+      margin: 0 1.8vw;
+      white-space: nowrap;
+    }
+    nav.menu-nav a {
+      color: var(--main-text);
+      text-decoration: none;
+      padding: 12px 0;
+      transition: color .25s;
+    }
+    nav.menu-nav a:hover {
+      color: var(--accent-kenmochi);
+    }
+    /* モバイル時：ハンバーガー&ドロワー */
+    @media (max-width: 700px) {
+      .hamburger { display: flex; }
+      nav.menu-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        left: -80vw;
+        width: 70vw;
+        max-width: 320px;
+        height: 100vh;
+        background: #fff;
+        box-shadow: 4px 0 16px rgba(60,60,100,0.11);
+        padding-top: 60px;
+      }
+      nav.menu-nav.open { left: 0; }
+      nav.menu-nav ul {
+        flex-direction: column;
+        gap: 18px;
+        margin-top: 18px;
+        padding-left: 24px;
+      }
+      nav.menu-nav li a {
+        color: var(--accent-kenmochi);
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+      body.menu-open main, body.menu-open header, body.menu-open .section { margin-left: 60vw; }
+    }
+    /* PC時は今まで通り */
+    @media (min-width: 701px) {
+      .hamburger { display: none; }
+      nav.menu-nav { 
+        position: fixed; left: 0; width: 100vw; height: auto; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.01); padding: 0;
+      }
+      nav.menu-nav ul { flex-direction: row; gap: 2vw; padding: 0; }
+      nav.menu-nav li a { color: #222; font-size: 1.1rem; }
+      main, header, .section { margin-left: 0 !important; }
     }
     header {
       text-align: center;
@@ -130,12 +230,26 @@
   </style>
 </head>
 <body>
-
+  <!-- ハンバーガーアイコン -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+  <!-- メニュー -->
+  <nav class="menu-nav" id="menuNav">
+    <ul>
+      <li><a href="../index.html">HOME</a></li>
+      <li><a href="../live.html">LIVE</a></li>
+      <li><a href="../variety.html">VARIETY</a></li>
+      <li><a href="kenmochi.html">剣持刀也</a></li>
+      <li><a href="fuwa.html">不破湊</a></li>
+      <li><a href="kagami.html">加賀美ハヤト</a></li>
+      <li><a href="kaida.html">甲斐田晴</a></li>
+    </ul>
+  </nav>
   <header>
     <h1>剣持刀也（けんもち とうや）</h1>
-   <img class="profile-img" src="../img/kenmochi.jpg" alt="剣持刀也">
+    <img class="profile-img" src="../img/kenmochi.jpg" alt="剣持刀也">
   </header>
-
   <div class="section">
     <h2>📖 プロフィール</h2>
     <p>
@@ -145,7 +259,6 @@
       練習のしすぎで怪我が絶えないので、常に救急セットを所持している。
     </p>
   </div>
-
   <div class="section">
     <h2>⭐ 推しポイント</h2>
     <p>
@@ -154,7 +267,6 @@
       ・ソロ活動でも文学的・演技的センスが光る
     </p>
   </div>
-
   <div class="section">
     <h2>🎬 ピックアップ動画</h2>
     <p>剣持刀也オリジナルソング</p>
@@ -163,7 +275,25 @@
     </div>
     <a href="https://youtu.be/sVgX2Ih--Cs?si=cpipR9MuoinhMPLQ" target="_blank" class="btn-youtube">▶️ YouTubeで見る</a>
   </div>
-
   <a class="back" href="../index.html">← トップページに戻る</a>
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('menuNav');
+      nav.classList.toggle('open');
+      document.body.classList.toggle('menu-open');
+      // 背景クリックでメニューを閉じる
+      if (nav.classList.contains('open')) {
+        document.body.addEventListener('click', closeMenuByBody, { once: true });
+      }
+    }
+    function closeMenuByBody(e) {
+      const nav = document.getElementById('menuNav');
+      const hamburger = document.querySelector('.hamburger');
+      if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+        nav.classList.remove('open');
+        document.body.classList.remove('menu-open');
+      }
+    }
+  </script>
 </body>
 </html>
