@@ -125,7 +125,9 @@
       }
       nav.menu-nav ul { flex-direction: row; gap: 2vw; padding: 0; }
       nav.menu-nav li a { color: #222; font-size: 1.1rem; }
-      main, header, .section { margin-left: 0 !important; }
+       body.menu-open header, body.menu-open .section {
+    margin-left: 0 !important;
+  }
     }
     header {
       text-align: center;
